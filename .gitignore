@@ -1,2 +1,6 @@
 # Ignore history files
 .history
+
+# Ignore editor folders & node_modules
+.vscode/
+.node_modules/
