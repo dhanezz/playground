@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 // COMPONENTS IMPORTS
-import { MyNewComponentComponent } from './my-new-component/my-new-component.component';
+import { DataBindingExample } from './data-binding-example/data-binding-example.component';
 import { LoginComponent } from './user-auth/login/login.component';
 
 // NOTE: Common Module is imported to use the *ngIf directive
@@ -11,7 +11,7 @@ import { LoginComponent } from './user-auth/login/login.component';
 // NOTE: @Component class decorator is used to define the metadata for the component class. 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, MyNewComponentComponent, LoginComponent], 
+  imports: [RouterOutlet, CommonModule, DataBindingExample, LoginComponent], 
   standalone: true, // NOTE: standalone is set to true to so it doesn't require a parent component and can import other components directly
   templateUrl: './app.component.html',
   // template: `

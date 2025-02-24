@@ -1,0 +1,8 @@
+<p>data-binding-example works!</p>
+<h2>Data Binding Example</h2>
+
+<!-- NOTE: This is one-way databinding -->
+<p>Project status is: {{status}}</p>
+
+<!-- NOTE: This is two-way databinding (with use of FormModule)-->
+Enter country name: <input type="text" [(ngModel)]="country" (change)="displayCountry()" /> 
