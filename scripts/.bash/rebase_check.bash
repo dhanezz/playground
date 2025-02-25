@@ -135,7 +135,9 @@ main() {
 
     # Check if there are uncommitted changes (modified or staged)
     check_uncommited_changes
+    wait
     check_unpushed_commits 
+    wait
     fetch_target_branch "$target_branch"
 
     check_rebase_needed
