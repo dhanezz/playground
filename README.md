@@ -6,6 +6,7 @@ Welcome to my playground! This repository contains various coding experiments, l
 
 - **/angular** - Frontend-Experiments with Angular and Typescript
 - **/java** - Experiments with Java and Spring Boot
+- **/scripts** - Bash, Shell, and other utility scripts experiments
 
 ## 🤔Why does this repository exist?
 
