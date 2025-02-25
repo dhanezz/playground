@@ -20,6 +20,14 @@ check_branch=$(git rev-parse --abbrev-ref HEAD) # default check branch
 
 # Function to merge the branch
 merge_branch() {
+    read -p "Do you want to merge the branch? (y/n): " merge_choice
+    if [ "$merge_choice" = "y" ]; then
+        merge_branch
+    else
+        echo "No merge needed."
+        exit 0
+    fi
+
     echo -e "\n🔄️ Merging branch..."
 
     echo -e "\n🔄️ Switching to branch $target_branch..."
@@ -61,11 +69,6 @@ rebase_branch() {
     git fetch origin # Make sure the latest changes are fetched
     git rebase "origin/$target_branch"
     echo -e "\n✅ Branch rebased successfully!"
-
-    read -p "Do you want to merge the branch? (y/n): " merge_choice
-    if [ "$merge_choice" = "y" ]; then
-        merge_branch
-    fi
 }
 
 # Functions to  push branch
@@ -147,23 +150,22 @@ check_rebase_needed() {
     behind_count=$(git rev-list --count "$check_branch".."origin/$target_branch")
 
     if [[ "$behind_count" -gt 0 ]]; then
-        echo "⚠️ Your branch ("$check_branch") is $behind_count commit(s) behind $target_branch. Consider rebasing!"
-        return 1
-    else
-        echo "✅ Your branch ("$check_branch") is up to date with $target_branch."
-        
-        read -p "Do you want to squash the commits? (y/n): " squash_choice
-        if [ "$squash_choice" = "y" ]; then
-            squash_branch
-        fi
-
+        echo "⚠️ Your branch ($check_branch) is $behind_count commit(s) behind $target_branch. Consider rebasing!"
         read -p "Do you want to rebase your branch? (y/n): " rebase_choice
         if [ "$rebase_choice" = "y" ]; then
             rebase_branch
+            merge_branch
         else
             echo "No rebase needed."
             exit 0
         fi
+    else
+        echo "✅ Your branch ($check_branch) is up to date with $target_branch."
+        read -p "Do you want to squash the commits? (y/n): " squash_choice
+        if [ "$squash_choice" = "y" ]; then
+            squash_branch
+        fi
+        merge_branch
     fi
 }
 
