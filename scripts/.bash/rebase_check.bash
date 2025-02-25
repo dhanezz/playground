@@ -1,8 +1,11 @@
 #!/bin/bash
-# Script to check if the branch needs rebasing
 #
 # Author: E. Dhane Canupin
 # Created: 23/02/2025
+# Last Modified: 25/02/2025
+# Version: 1.0
+# Description: Script to check if the current branch needs rebasing against a target branch
+# Usage: bash ./rebase_check.bash
 #
 # Note: Specificly used Bash for this script, since it has more features than sh especially better git integrations.
 
