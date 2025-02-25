@@ -21,29 +21,27 @@ check_branch=$(git rev-parse --abbrev-ref HEAD) # default check branch
 # Function to merge the branch
 merge_branch() {
     read -p "Do you want to merge the branch? (y/n): " merge_choice
-    if [ "$merge_choice" = "y" ]; then
-        merge_branch
-    else
+    if [ "$merge_choice" = "n" ]; then
         echo "No merge needed."
         exit 0
-    fi
-
-    echo -e "\n🔄️ Merging branch..."
-
-    echo -e "\n🔄️ Switching to branch $target_branch..."
-    git checkout "$target_branch"
-    git pull origin "$target_branch"
-
-    echo -e "\n🔄️ Merging branch $check_branch into $target_branch..."
-
-    read -p "Do you want to merge with --no-ff? (y/n): " merge_choice
-    if [ "$merge_choice" = "y" ]; then
-        git merge --no-ff "$check_branch"
     else
-        git merge "$check_branch"
-    fi
+        echo -e "\n🔄️ Merging branch..."
 
-    echo -e "\n✅ Branch merged successfully!"
+         echo -e "\n🔄️ Switching to branch $target_branch..."
+        git checkout "$target_branch"
+        git pull origin "$target_branch"
+
+        echo -e "\n🔄️ Merging branch $check_branch into $target_branch..."
+
+        read -p "Do you want to merge with --no-ff? (y/n): " merge_choice
+        if [ "$merge_choice" = "y" ]; then
+            git merge --no-ff "$check_branch"
+        else
+            git merge "$check_branch"
+        fi
+
+        echo -e "\n✅ Branch merged successfully!"
+    fi
 }
 
 # Function to fetch the target branch
